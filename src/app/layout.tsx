@@ -13,7 +13,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <title>ChessELOle</title>
+      <head>
+        <title>ChessELOle</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="description" content="Guess the Lichess ELO of a random chess game and see how well you fare :D" />
+        <meta name="keywords" content="Chess, Guess, Game, ELO, Rating, Score, ChessELOle, Lichess" />
+        <meta name="author" content="RandomGamingDev" />
+      </head>
       <body className={`bg-neutral-900 antialiased`}>
         {children}
       </body>

@@ -1,8 +1,9 @@
 'use client'
 
-import { DetailedHTMLProps, FormEvent } from "react";
+import { getPgn } from "@/shared/get-pgn";
+import { Dispatch, FormEvent, MutableRefObject, SetStateAction, useEffect } from "react";
 
-export default function Guess() {
+export default function Guess({ pgn, setPgn, boardRef } : { pgn: string, setPgn: Dispatch<SetStateAction<string>>, boardRef: MutableRefObject<null> }) {
 	const guessed = (e: FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
 
@@ -19,6 +20,9 @@ export default function Guess() {
 
 	const minElo = 0;
 	const maxElo = 4000;
+
+	const game = "zlma26yn";
+	useEffect(() => getPgn(game, boardRef, setPgn), []);
 
 	return (
 		<div className="mx-4 text-neutral-300">

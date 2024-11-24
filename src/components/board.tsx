@@ -1,25 +1,10 @@
 'use client'
 
-import { useEffect, useRef } from 'react';
-import LichessPgnViewer from 'lichess-pgn-viewer';
+import { MutableRefObject } from 'react';
 
 import '@/styles/lichess-pgn-viewer.css';
 
-export default function Board() {
-	const boardRef = useRef(null);
-
-	useEffect(() => {
-		fetch("https://lichess.org/game/export/zlma26yn?literate=1")
-			.then(res => res.text())
-			.then(txt => {
-				if (!boardRef.current)
-					return;
-				LichessPgnViewer(boardRef.current, {
-					pgn: txt
-				});
-			});
-	}, []);
-
+export default function Board({ pgn, boardRef } : { pgn: string, boardRef: MutableRefObject<null> }) {
   return (
 		<div className="board-container viewers mx-8 gap-8">
 			<div ref={boardRef}></div>
