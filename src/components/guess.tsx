@@ -4,7 +4,7 @@ import { getPgn } from "@/shared/get-pgn";
 import { getPgnHeaderAttrib } from "@/shared/get-pgn-header-attrib";
 import { Dispatch, FormEvent, MutableRefObject, SetStateAction, useEffect, useRef } from "react";
 
-export default function Guess({ pgn, setPgn, boardRef, score, setGuessedElos, setScore } : { pgn: string, setPgn: Dispatch<SetStateAction<string>>, boardRef: MutableRefObject<null>, score: number, setGuessedElos: Dispatch<SetStateAction<number[]>>, setScore: Dispatch<SetStateAction<number>> }) {
+export default function Guess({ pgn, setPgn, boardRef, setGuessedElos, setScore, setReward } : { pgn: string, setPgn: Dispatch<SetStateAction<string>>, boardRef: MutableRefObject<null>, setGuessedElos: Dispatch<SetStateAction<number[]>>, setScore: Dispatch<SetStateAction<number>>, setReward: Dispatch<SetStateAction<number>> }) {
 	const minElo = 0;
 	const maxElo = 4000;
 
@@ -22,8 +22,10 @@ export default function Guess({ pgn, setPgn, boardRef, score, setGuessedElos, se
 		let reward = 2 * maxElo - 10 * ((((whiteElo - whiteEloGuess) + (blackElo - blackEloGuess)) * 0.05) ** 2);
 		if (reward < 0)
 			reward = -Math.log(Math.abs(reward)) / Math.log(1.002);
+		reward = Math.round(reward);
 
-		setScore(score + reward);
+		setReward(reward);
+		setScore(score => score + reward);
 		e.currentTarget.reset();
 	}
 

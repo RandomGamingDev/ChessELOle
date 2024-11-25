@@ -44,7 +44,7 @@ export default function Navbar({ pgn, score } : { pgn: string, score: number }) 
 				<h2 className="font-bold text-2xl w-fit px-4 dark:text-neutral-400 text-neutral-500">Guess the elo of the chess game!</h2>
 			</div>
 			<div className="w-full">
-				<h2 className="font-bold text-center text-5xl mx-128 my-4">Score: { Math.round(score) } </h2>
+				<h2 className="font-bold text-center text-5xl mx-128 my-4">Score: { score } </h2>
 			</div>
 
 			<div className="m-3 float-right">

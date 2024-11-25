@@ -15,6 +15,7 @@ export default function Home() {
 
   const [guessedElos, setGuessedElos] = useState([0, 0]);
   const [score, setScore] = useState(0);
+  const [reward, setReward] = useState(0);
 
   return (
     <div>
@@ -23,10 +24,10 @@ export default function Home() {
         <Board pgn={pgn} boardRef={boardRef} />
         <div className="w-full">
           <div className="w-full h-fit flex">
-            <Guess pgn={pgn} setPgn={setPgn} boardRef={boardRef} score={score} setGuessedElos={setGuessedElos} setScore={setScore} />
+            <Guess pgn={pgn} setPgn={setPgn} boardRef={boardRef} setGuessedElos={setGuessedElos} setScore={setScore} setReward={setReward} />
             <Details pgn={pgn} />
           </div>
-          <Result pgn={pgn} guessedElos={guessedElos} />
+          <Result pgn={pgn} guessedElos={guessedElos} reward={reward} />
         </div>
       </div>
       <Footer />
