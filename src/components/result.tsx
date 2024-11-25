@@ -1,6 +1,6 @@
 import { getPgnHeaderAttrib } from "@/shared/get-pgn-header-attrib";
 
-export default function Result({ pgn } : { pgn: string }) {
+export default function Result({ pgn, guessedElos } : { pgn: string, guessedElos: number[] }) {
 	const white = getPgnHeaderAttrib(pgn, "White");
 	const whiteElo = getPgnHeaderAttrib(pgn, "WhiteElo");
 	const whiteRatingDiff = getPgnHeaderAttrib(pgn, "WhiteRatingDiff");
@@ -13,10 +13,12 @@ export default function Result({ pgn } : { pgn: string }) {
 			<div className="flex mb-32">
 				<div className="white pawn w-10 h-10 scale-[3] mr-16"></div>
 				<h2 className="text-2xl font-bold">{white} ({whiteElo}) [{blackRatingDiff}]</h2>
+				<h2 className="text-2xl font-bold">{guessedElos[0]}</h2>
 			</div>
 			<div className="flex mb-32">
 				<div className="black pawn w-10 h-10 scale-[3] mr-16"></div>
 				<h2 className="text-2xl font-bold">{black} ({blackElo}) [{whiteRatingDiff}]</h2>
+				<h2 className="text-2xl font-bold">{guessedElos[1]}</h2>
 			</div>
     </div>
   );

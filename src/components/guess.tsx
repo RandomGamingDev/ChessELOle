@@ -4,13 +4,12 @@ import { getPgn } from "@/shared/get-pgn";
 import { getPgnHeaderAttrib } from "@/shared/get-pgn-header-attrib";
 import { Dispatch, FormEvent, MutableRefObject, SetStateAction, useEffect, useRef } from "react";
 
-export default function Guess({ pgn, setPgn, boardRef, score, setScore } : { pgn: string, setPgn: Dispatch<SetStateAction<string>>, boardRef: MutableRefObject<null>, score: number, setScore: Dispatch<SetStateAction<number>> }) {
+export default function Guess({ pgn, setPgn, boardRef, score, setGuessedElos, setScore } : { pgn: string, setPgn: Dispatch<SetStateAction<string>>, boardRef: MutableRefObject<null>, score: number, setGuessedElos: Dispatch<SetStateAction<number[]>>, setScore: Dispatch<SetStateAction<number>> }) {
 	const minElo = 0;
 	const maxElo = 4000;
 
 	const guessed = (e: FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
-		e.currentTarget.reset();
 
 		const whiteElo = Number(getPgnHeaderAttrib(pgn, "WhiteElo"));
 		const blackElo = Number(getPgnHeaderAttrib(pgn, "BlackElo"));
@@ -18,12 +17,14 @@ export default function Guess({ pgn, setPgn, boardRef, score, setScore } : { pgn
 		const formData = new FormData(e.currentTarget);
 		const whiteEloGuess = Number(formData.get("white-elo-guess"));
 		const blackEloGuess = Number(formData.get("black-elo-guess"));
+		setGuessedElos([whiteEloGuess, blackEloGuess]);
 
 		let reward = 2 * maxElo - 10 * ((((whiteElo - whiteEloGuess) + (blackElo - blackEloGuess)) * 0.05) ** 2);
 		if (reward < 0)
 			reward = -Math.log(Math.abs(reward)) / Math.log(1.002);
 
 		setScore(score + reward);
+		e.currentTarget.reset();
 	}
 
 	const validateNaturalNumInput = (e: FormEvent<HTMLInputElement>) => {
@@ -48,10 +49,6 @@ export default function Guess({ pgn, setPgn, boardRef, score, setScore } : { pgn
 					Submit
 				</button>
 			</form>
-
-			<div id="result">
-
-			</div>
 		</div>
 	)
 }
