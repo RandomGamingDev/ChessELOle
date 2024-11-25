@@ -24,7 +24,7 @@ export default function Home() {
         <Board pgn={pgn} boardRef={boardRef} />
         <div className="w-full">
           <div className="w-full h-fit flex">
-            <Guess pgn={pgn} setPgn={setPgn} boardRef={boardRef} setGuessedElos={setGuessedElos} setScore={setScore} setReward={setReward} />
+            <Guess pgn={pgn} setPgn={setPgn} boardRef={boardRef} guessedElos={guessedElos} setGuessedElos={setGuessedElos} setScore={setScore} setReward={setReward} />
             <Details pgn={pgn} />
           </div>
           <Result pgn={pgn} guessedElos={guessedElos} reward={reward} />

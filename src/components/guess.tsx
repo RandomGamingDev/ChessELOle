@@ -4,7 +4,7 @@ import { getPgn } from "@/shared/get-pgn";
 import { getPgnHeaderAttrib } from "@/shared/get-pgn-header-attrib";
 import { Dispatch, FormEvent, MouseEventHandler, MutableRefObject, SetStateAction, SyntheticEvent, useEffect, useRef } from "react";
 
-export default function Guess({ pgn, setPgn, boardRef, setGuessedElos, setScore, setReward } : { pgn: string, setPgn: Dispatch<SetStateAction<string>>, boardRef: MutableRefObject<HTMLElement | null>, setGuessedElos: Dispatch<SetStateAction<number[]>>, setScore: Dispatch<SetStateAction<number>>, setReward: Dispatch<SetStateAction<number>> }) {
+export default function Guess({ pgn, setPgn, boardRef, guessedElos, setGuessedElos, setScore, setReward } : { pgn: string, setPgn: Dispatch<SetStateAction<string>>, boardRef: MutableRefObject<HTMLElement | null>, guessedElos: number[], setGuessedElos: Dispatch<SetStateAction<number[]>>, setScore: Dispatch<SetStateAction<number>>, setReward: Dispatch<SetStateAction<number>> }) {
 	const minElo = 0;
 	const maxElo = 4000;
 
@@ -56,7 +56,7 @@ export default function Guess({ pgn, setPgn, boardRef, setGuessedElos, setScore,
 				<button type="submit" className="bg-lime-600 hover:bg-lime-700 mt-4 mr-4 text-white font-bold py-2 px-4 rounded appearance-none">
 					Submit
 				</button>
-				<button type="button" onClick={toNextGame} className="bg-blue-500 hover:bg-blue-700 mt-4 text-white font-bold py-2 px-4 rounded appearance-none">
+				<button type="button" onClick={toNextGame} className={`${ guessedElos[0] == -1 ? "invisible" : ''} bg-blue-500 hover:bg-blue-700 mt-4 text-white font-bold py-2 px-4 rounded appearance-none`}>
 					Next
 				</button>
 			</form>
