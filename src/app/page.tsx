@@ -20,10 +20,10 @@ export default function Home() {
   return (
     <div>
       <Navbar pgn={pgn} score={score} />
-      <div className="w-full flex">
+      <div className="w-full lg:flex">
         <Board pgn={pgn} boardRef={boardRef} />
-        <div className="w-full">
-          <div className="w-full h-fit flex">
+        <div className="w-max-[50rem] ml-4 lg:ml-0">
+          <div className="w-max-[50rem] w-fit h-fit flex m-8">
             <Guess pgn={pgn} setPgn={setPgn} boardRef={boardRef} guessedElos={guessedElos} setGuessedElos={setGuessedElos} setScore={setScore} setReward={setReward} />
             <Details pgn={pgn} />
           </div>

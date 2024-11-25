@@ -47,8 +47,8 @@ export default function Guess({ pgn, setPgn, boardRef, guessedElos, setGuessedEl
 	}
 
 	return (
-		<div className="dark:text-neutral-300 text-neutral-700 w-full">
-			<h1 className="text-4xl font-bold pb-4">Make your guess!</h1>
+		<div className="dark:text-neutral-300 text-neutral-700">
+			<h1 className="text-4xl font-bold pb-4 text-nowrap">Make your guess!</h1>
 			<form id="guess" onSubmit={guessed}>
 				<label htmlFor="white-elo-guess"><h2 className="text-2xl font-bold">White&apos;s ELO</h2></label>
 				<input type="number" min={minElo} max={maxElo} onInput={validateNaturalNumInput} id="white-elo-guess" name="white-elo-guess" className="mb-4 text-xl w-64" placeholder="0-4000" required></input>
