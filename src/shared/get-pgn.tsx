@@ -9,11 +9,11 @@ export const getPgn = (gameId: string, boardRef: MutableRefObject<null>, setPgn:
 			if (!boardRef.current)
 				return;
 
-			//window.location.hash = gameId
 			window.history.pushState(null, '', `#${gameId}`);
 			setPgn(txt);
+			const dispPgn = txt.split('\n').find(line => line.trim().startsWith("1. "));
 			LichessPgnViewer(boardRef.current, {
-				pgn: txt
+				pgn: dispPgn
 			});
 		});
 }
