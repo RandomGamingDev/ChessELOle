@@ -8,6 +8,8 @@ export default function Result({ pgn, guessedElos, reward } : { pgn: string, gue
 	const blackElo = Number(getPgnHeaderAttrib(pgn, "BlackElo"));
 	const blackRatingDiff = getPgnHeaderAttrib(pgn, "BlackRatingDiff");
 
+	const gameUrl = getPgnHeaderAttrib(pgn, "Site");
+
 	const ratingType = Math.sign(reward) + 1;
 	const rewardColor = ["text-rose-600", "text-neutral-500", "text-lime-500"][ratingType];
 
@@ -15,7 +17,7 @@ export default function Result({ pgn, guessedElos, reward } : { pgn: string, gue
 		<div className={`m-8 mt-8 dark:text-neutral-300 text-neutral-700 w-fit flex ${ guessedElos[0] == -1 ? "invisible" : ''}`}>
 			<div>
 				<div className="mb-16">
-					<h1 className="flex font-bold text-4xl w-fit">Results:&nbsp;<h1 className={`${rewardColor}`}>{ratingType != 0 ? '+' : ''}{reward} points!</h1></h1>
+					<h1 className="flex font-bold text-4xl w-fit">Results:&nbsp;<p className={`${rewardColor}`}>{ratingType != 0 ? '+' : ''}{reward} points!</p></h1>
 				</div>
 				<div id="elo-display">
 					<div className="flex mb-32">
@@ -33,6 +35,10 @@ export default function Result({ pgn, guessedElos, reward } : { pgn: string, gue
 						</div>
 					</div>
 				</div>
+			</div>
+			<div className="ml-14 mt-8">
+				<a target="_blank" href={gameUrl}><img className="rounded-full ml-6" src="/lichess-logo.png"></img></a>
+				<h2 className="text-2xl font-bold mt-4 text-center">Check out the game on Lichess!</h2>
 			</div>
 		</div>
 	);

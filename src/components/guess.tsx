@@ -2,6 +2,7 @@
 
 import { getPgn } from "@/shared/get-pgn";
 import { getPgnHeaderAttrib } from "@/shared/get-pgn-header-attrib";
+import { getRandGameId } from "@/shared/get-rand-game-id";
 import { Dispatch, FormEvent, MouseEventHandler, MutableRefObject, SetStateAction, SyntheticEvent, useEffect, useRef } from "react";
 
 export default function Guess({ pgn, setPgn, boardRef, guessedElos, setGuessedElos, setScore, setReward } : { pgn: string, setPgn: Dispatch<SetStateAction<string>>, boardRef: MutableRefObject<HTMLElement | null>, guessedElos: number[], setGuessedElos: Dispatch<SetStateAction<number[]>>, setScore: Dispatch<SetStateAction<number>>, setReward: Dispatch<SetStateAction<number>> }) {
@@ -34,12 +35,14 @@ export default function Guess({ pgn, setPgn, boardRef, guessedElos, setGuessedEl
 		t.value = t.value.replace(/[^0-9]/g, '');
 	}
 
-	const game = "zlma26yn";
-	useEffect(() => getPgn(game, boardRef, setPgn), [boardRef, setPgn]);
+	useEffect(() => {
+		getRandGameId()
+			.then(id => getPgn(id, boardRef, setPgn));
+	}, [boardRef, setPgn]);
 
 	const toNextGame = (e: SyntheticEvent) => {
-		const nextGame = "YcZrY6q4";
-		getPgn(nextGame, boardRef, setPgn), [boardRef, setPgn]
+		getRandGameId()
+			.then(id => getPgn(id, boardRef, setPgn));
 		setGuessedElos([-1, -1]);
 	}
 

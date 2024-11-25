@@ -12,7 +12,6 @@ export const getPgn = (gameId: string, boardRef: MutableRefObject<HTMLElement | 
 			if (!boardRef.current)
 				return;
 
-			console.log(txt);
 			window.history.pushState(null, '', `#${gameId}`);
 			setPgn(txt);
 			const dispPgn = txt.split('\n').find(line => line.trim().startsWith("1. "));
