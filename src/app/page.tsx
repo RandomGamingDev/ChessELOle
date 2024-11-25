@@ -13,7 +13,7 @@ export default function Home() {
   const [pgn, setPgn] = useState("");
 	const boardRef = useRef(null);
 
-  const [guessedElos, setGuessedElos] = useState([0, 0]);
+  const [guessedElos, setGuessedElos] = useState([-1, -1]);
   const [score, setScore] = useState(0);
   const [reward, setReward] = useState(0);
 

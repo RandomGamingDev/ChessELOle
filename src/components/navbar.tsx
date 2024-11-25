@@ -36,6 +36,9 @@ export default function Navbar({ pgn, score } : { pgn: string, score: number }) 
 		swapOp();
 	}
 
+	const ratingType = Math.sign(score) + 1;
+	const scoreColor = ["text-rose-600", "text-neutral-500", "text-lime-500"][ratingType];
+
 	return (
 		<div id="navbar" className="w-full select-none inline-block flex p-4 bg-gradient-to-b dark:from-neutral-800 dark:text-neutral-300 text-neutral-700">
 			<img src="/favicon.ico" className="w-20 h-20" width="64" height="64" alt="Icon"></img>
@@ -44,7 +47,7 @@ export default function Navbar({ pgn, score } : { pgn: string, score: number }) 
 				<h2 className="font-bold text-2xl w-fit px-4 dark:text-neutral-400 text-neutral-500">Guess the elo of the chess game!</h2>
 			</div>
 			<div className="w-full">
-				<h2 className="font-bold text-center text-5xl mx-128 my-4">Score: { score } </h2>
+				<h2 className="font-bold text-center text-5xl mx-128 my-4">Score: <h2 className={`${scoreColor}`}>{ score }</h2> </h2>
 			</div>
 
 			<div className="m-3 float-right">

@@ -11,8 +11,10 @@ export default function Result({ pgn, guessedElos, reward } : { pgn: string, gue
 	const ratingType = Math.sign(reward) + 1;
 	const rewardColor = ["text-rose-600", "text-neutral-500", "text-lime-500"][ratingType];
 
-  return (
-		<div className="m-8 mt-8 dark:text-neutral-300 text-neutral-700 w-fit flex">
+	console.log(guessedElos[0] == -1);
+
+	return (
+		<div className={`m-8 mt-8 dark:text-neutral-300 text-neutral-700 w-fit flex ${ guessedElos[0] == -1 ? "invisible" : ''}`}>
 			<div>
 				<div className="mb-16">
 					<h1 className="flex font-bold text-4xl w-fit">Results:&nbsp;<h1 className={`${rewardColor}`}>{ratingType != 0 ? '+' : ''}{reward} points!</h1></h1>
@@ -34,6 +36,6 @@ export default function Result({ pgn, guessedElos, reward } : { pgn: string, gue
 					</div>
 				</div>
 			</div>
-    </div>
-  );
+		</div>
+	);
 }
