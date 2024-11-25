@@ -20,7 +20,7 @@ export default function RootLayout({
         <meta name="keywords" content="Chess, Guess, Game, ELO, Rating, Score, ChessELOle, Lichess" />
         <meta name="author" content="RandomGamingDev" />
       </head>
-      <body className={`bg-neutral-900 antialiased`}>
+      <body className={`dark:bg-neutral-900 bg-neutral-200 antialiased`}>
         {children}
       </body>
     </html>

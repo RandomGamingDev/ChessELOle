@@ -1,4 +1,8 @@
 @charset "UTF-8";
+:root {
+  --board-color: #b58863;
+}
+
 .cg-wrap {
   box-sizing: content-box;
   position: relative;

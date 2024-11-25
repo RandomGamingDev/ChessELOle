@@ -34,7 +34,7 @@ export default function Guess({ pgn, setPgn, boardRef, score, setScore } : { pgn
 	useEffect(() => getPgn(game, boardRef, setPgn), []);
 
 	return (
-		<div className="mx-4 text-neutral-300">
+		<div className="mx-4 dark:text-neutral-300 text-neutral-700">
 			<h1 className="text-4xl font-bold pb-4">Make your guess!</h1>
 			<form id="guess" onSubmit={guessed}>
 				<label htmlFor="white-elo-guess"><h2 className="text-2xl font-bold">White&apos;s ELO</h2></label>
