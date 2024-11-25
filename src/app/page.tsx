@@ -7,6 +7,7 @@ import Board from "@/components/board";
 import Footer from "@/components/footer";
 import Guess from "@/components/guess";
 import Details from "@/components/details";
+import Result from "@/components/result";
 
 export default function Home() {
   const [pgn, setPgn] = useState("");
@@ -19,8 +20,13 @@ export default function Home() {
       <Navbar pgn={pgn} score={score} />
       <div className="w-full flex">
         <Board pgn={pgn} boardRef={boardRef} />
-        <Guess pgn={pgn} setPgn={setPgn} boardRef={boardRef} score={score} setScore={setScore} />
-        <Details pgn={pgn} />
+        <div className="w-full">
+          <div className="w-full h-fit flex">
+            <Guess pgn={pgn} setPgn={setPgn} boardRef={boardRef} score={score} setScore={setScore} />
+            <Details pgn={pgn} />
+          </div>
+          <Result pgn={pgn} />
+        </div>
       </div>
       <Footer />
     </div>
