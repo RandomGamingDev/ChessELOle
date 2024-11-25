@@ -11,8 +11,6 @@ export default function Result({ pgn, guessedElos, reward } : { pgn: string, gue
 	const ratingType = Math.sign(reward) + 1;
 	const rewardColor = ["text-rose-600", "text-neutral-500", "text-lime-500"][ratingType];
 
-	console.log(guessedElos[0] == -1);
-
 	return (
 		<div className={`m-8 mt-8 dark:text-neutral-300 text-neutral-700 w-fit flex ${ guessedElos[0] == -1 ? "invisible" : ''}`}>
 			<div>

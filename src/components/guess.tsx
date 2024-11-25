@@ -4,7 +4,7 @@ import { getPgn } from "@/shared/get-pgn";
 import { getPgnHeaderAttrib } from "@/shared/get-pgn-header-attrib";
 import { Dispatch, FormEvent, MouseEventHandler, MutableRefObject, SetStateAction, SyntheticEvent, useEffect, useRef } from "react";
 
-export default function Guess({ pgn, setPgn, boardRef, setGuessedElos, setScore, setReward } : { pgn: string, setPgn: Dispatch<SetStateAction<string>>, boardRef: MutableRefObject<null>, setGuessedElos: Dispatch<SetStateAction<number[]>>, setScore: Dispatch<SetStateAction<number>>, setReward: Dispatch<SetStateAction<number>> }) {
+export default function Guess({ pgn, setPgn, boardRef, setGuessedElos, setScore, setReward } : { pgn: string, setPgn: Dispatch<SetStateAction<string>>, boardRef: MutableRefObject<HTMLElement | null>, setGuessedElos: Dispatch<SetStateAction<number[]>>, setScore: Dispatch<SetStateAction<number>>, setReward: Dispatch<SetStateAction<number>> }) {
 	const minElo = 0;
 	const maxElo = 4000;
 
@@ -39,7 +39,7 @@ export default function Guess({ pgn, setPgn, boardRef, setGuessedElos, setScore,
 
 	const toNextGame = (e: SyntheticEvent) => {
 		const nextGame = "YcZrY6q4";
-		getPgn(game, boardRef, setPgn), [boardRef, setPgn]
+		getPgn(nextGame, boardRef, setPgn), [boardRef, setPgn]
 		setGuessedElos([-1, -1]);
 	}
 
