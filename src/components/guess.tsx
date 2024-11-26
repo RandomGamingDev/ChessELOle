@@ -42,8 +42,11 @@ export default function Guess({ pgn, setPgn, boardRef, guessedElos, setGuessedEl
 	}
 
 	useEffect(() => {
-		getRandGameId()
-			.then(id => getPgn(id, boardRef, setPgn));
+		if (window.location.hash.length == 0)
+			getRandGameId()
+				.then(id => getPgn(id, boardRef, setPgn));
+		else
+			getPgn(window.location.hash.slice(1), boardRef, setPgn);
 	}, [boardRef, setPgn]);
 
 	const toNextGame = (e: SyntheticEvent) => {
