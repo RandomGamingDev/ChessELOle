@@ -1,4 +1,5 @@
 import { getPgnHeaderAttrib } from "@/shared/get-pgn-header-attrib";
+import nextConfig from "../../next.config";
 
 export default function Result({ pgn, guessedElos, reward } : { pgn: string, guessedElos: number[], reward: number }) {
 	const white = getPgnHeaderAttrib(pgn, "White");
@@ -37,7 +38,7 @@ export default function Result({ pgn, guessedElos, reward } : { pgn: string, gue
 				</div>
 			</div>
 			<div className="ml-14 mt-8">
-				<a target="_blank" href={gameUrl}><img className="rounded-full ml-6" src="/lichess-logo.png"></img></a>
+				<a target="_blank" href={gameUrl}><img className="rounded-full ml-6" src={`${nextConfig.basePath}/lichess-logo.png`}></img></a>
 				<h2 className="text-2xl font-bold mt-4 text-center">Check out the game on Lichess!</h2>
 			</div>
 		</div>
