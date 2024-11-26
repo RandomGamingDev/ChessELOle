@@ -9,8 +9,13 @@ export default function Guess({ pgn, setPgn, boardRef, guessedElos, setGuessedEl
 	const minElo = 0;
 	const maxElo = 4000;
 
+	const guessForm: MutableRefObject<HTMLFormElement | null> = useRef(null);
+
 	const guessed = (e: FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
+
+		if (e.currentTarget.classList.contains("already-guessed"))
+			return;
 
 		const whiteElo = Number(getPgnHeaderAttrib(pgn, "WhiteElo"));
 		const blackElo = Number(getPgnHeaderAttrib(pgn, "BlackElo"));
@@ -27,7 +32,8 @@ export default function Guess({ pgn, setPgn, boardRef, guessedElos, setGuessedEl
 
 		setReward(reward);
 		setScore(score => score + reward);
-		e.currentTarget.reset();
+
+		e.currentTarget.classList.add("already-guessed");
 	}
 
 	const validateNaturalNumInput = (e: FormEvent<HTMLInputElement>) => {
@@ -44,12 +50,15 @@ export default function Guess({ pgn, setPgn, boardRef, guessedElos, setGuessedEl
 		getRandGameId()
 			.then(id => getPgn(id, boardRef, setPgn));
 		setGuessedElos([-1, -1]);
+		guessForm.current!.reset();
+
+		guessForm.current!.classList.remove("already-guessed");
 	}
 
 	return (
 		<div className="dark:text-neutral-300 text-neutral-700">
 			<h1 className="text-4xl font-bold pb-4 text-nowrap">Make your guess!</h1>
-			<form id="guess" onSubmit={guessed}>
+			<form id="guess" ref={guessForm} onSubmit={guessed}>
 				<label htmlFor="white-elo-guess"><h2 className="text-2xl font-bold">White&apos;s ELO</h2></label>
 				<input type="number" min={minElo} max={maxElo} onInput={validateNaturalNumInput} id="white-elo-guess" name="white-elo-guess" className="mb-4 text-xl w-64" placeholder="0-4000" required></input>
 				<label htmlFor="black-elo-guess"><h2 className="text-2xl font-bold">Black&apos;s ELO</h2></label>
