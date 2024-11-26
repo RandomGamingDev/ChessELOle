@@ -22,7 +22,7 @@ export default function Home() {
       <Navbar pgn={pgn} score={score} />
       <div className="w-full lg:flex">
         <Board pgn={pgn} boardRef={boardRef} />
-        <div className="w-max-full w-full pt-4 pl-4 lg:ml-0">
+        <div className="w-max-full w-full pt-4 px-8 lg:ml-0">
           <div className="w-max-full w-full h-fit flex">
             <Guess pgn={pgn} setPgn={setPgn} boardRef={boardRef} guessedElos={guessedElos} setGuessedElos={setGuessedElos} setScore={setScore} setReward={setReward} />
             <Details pgn={pgn} />
