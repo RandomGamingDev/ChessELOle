@@ -14,3 +14,4 @@ reward = Math.round(reward);
 ## UI:
 ![example screen](https://github.com/user-attachments/assets/014c299f-902e-4b11-afc6-0801acd69a22)
 
+This project uses the [`lichess-id-divider`](https://github.com/RandomGamingDev/lichess-id-divider) script and dataset for its random games.
