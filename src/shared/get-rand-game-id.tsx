@@ -1,5 +1,5 @@
 export const getRandGameId = () => {
-	const fileId = Math.round(30000 * Math.random());
+	const fileId = Math.round(94250 * Math.random());
 	const fileUrl = `https://raw.githubusercontent.com/RandomGamingDev/lichess-id-divider/master/out-lichess_db_standard_rated_2024-10/lichess-${fileId}.ids`;
 
 	return fetch(fileUrl)
