@@ -25,9 +25,9 @@ export default function Guess({ pgn, setPgn, boardRef, guessedElos, setGuessedEl
 		const blackEloGuess = Number(formData.get("black-elo-guess"));
 		setGuessedElos([whiteEloGuess, blackEloGuess]);
 
-		let reward = 2 * maxElo - 10 * ((((whiteElo - whiteEloGuess) + (blackElo - blackEloGuess)) * 0.05) ** 2);
+		let reward = 2 * maxElo - 10 * (((Math.abs(whiteElo - whiteEloGuess) + Math.abs(blackElo - blackEloGuess)) * 0.028) ** 2);
 		if (reward < 0)
-			reward = -Math.log(Math.abs(reward)) / Math.log(1.002);
+			reward = -Math.log(Math.abs(reward)) / Math.log(1.005);
 		reward = Math.round(reward);
 
 		setReward(reward);
